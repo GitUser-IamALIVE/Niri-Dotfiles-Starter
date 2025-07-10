@@ -1,0 +1,142 @@
+{
+  // ========== BAR LAYOUT & POSITIONING ==========
+  "layer": "bottom",
+  "position": "bottom",
+  "height": 36,
+  "margin-top": 4,
+  "margin-bottom": 4,
+  "margin-left": 6,
+  "margin-right": 6,
+  "spacing": 6,
+
+  // ========== MODULE POSITIONS ==========
+  "modules-left": ["niri/workspaces", "cpu", "memory", "temperature", "custom/launcher"],
+  "modules-center": ["niri/window"],
+  "modules-right": ["custom/control_center" , "network", "disk", "pulseaudio", "backlight", "clock", "custom/power"],
+
+  // ========== MODULE CONFIGURATIONS ==========
+  
+  // Workspace Indicator
+  "niri/workspaces": {
+    "disable-click": false,
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "urgent": ""
+  },
+
+  // CPU Monitor
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 2,
+    "tooltip": true,
+    "tooltip-format": "CPU Information\n──────────────\nUsage: {usage}%\nTemperature: {temperature}°C\nFrequency: {frequency} GHz\nCores: {cores}\nModel: {model}\n\nLeft Click: Open system monitor",
+    "on-click": "kitty --class=monitor -e btop --force-utf"
+  },
+
+  // Memory Monitor
+  "memory": {
+    "format": " {percentage}%",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "Memory Information\n───────────────\nUsed: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nAvailable: {avail:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G\n\nLeft Click: Open system monitor",
+    "on-click": "kitty --class=monitor -e btop --force-utf"
+  },
+
+  // Temperature Monitor
+  "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+  // Application Launcher
+  "custom/launcher": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Application Launcher\n─────────────────\nLeft Click: Open terminal\nRight Click: Open application launcher\nMiddle Click: Open file manager",
+    "on-click": "kitty",
+    "on-click-right": "fuzzel",
+    "on-click-middle": "nautilus"
+  },
+
+  // Window Title
+  "niri/window": {
+    "max-length": 60,
+    "icon": false,
+    "format": "{}",
+    "tooltip": false
+  },
+
+  // Network Status
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+  // Disk Usage
+  "disk": {
+    "format": " {percentage_used}%",
+    "path": "/",
+    "on-click": "nautilus"
+  },
+
+  // Audio Control
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "scroll-step": 5,
+    "tooltip": true,
+    "tooltip-format": "Audio Controls\n────────────\nVolume: {volume}%\n\nLeft Click: Open audio mixer\nRight Click: Toggle mute\nScroll: Adjust volume",
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  },
+
+  // Backlight Control
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "tooltip": true,
+    "tooltip-format": "Display Brightness\n────────────────\nCurrent: {percent}%"
+  },
+
+  // Clock
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    
+     "custom/control_center": {
+        "format": "  ", // Font Awesome: fa-sliders (sliders icon)
+        "tooltip": true,
+        "tooltip-format": "Right click to open control-center\nLeft click to open control-center",
+        "on-click": "swaync-client -t -sw", // Left click opens control-center
+        "on-click-right": "swaync-client -t -sw" // Right click opens contol-center
+    },
+
+  // Power Menu
+  "custom/power": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-format": "Power Options\n────────────\nLeft Click: Power menu\nRight Click: Suspend\nMiddle Click: Reboot",
+    "on-click": "wlogout --protocol layer-shell",
+    "on-click-right": "systemctl suspend",
+    "on-click-middle": "systemctl reboot"
+    },
+
+  }
+}

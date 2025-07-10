@@ -1,0 +1,149 @@
+@import "mocha.css";
+
+* {
+    padding: 2px;
+    border-radius: 0px;
+    font-size: 15px;
+    font-family: "Agave Nerd Font" ;
+    min-height: 20px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+    color: @text;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+tooltip {
+    border: 3px solid @blue;
+    background-color: @base;
+}
+
+#workspaces {
+    border: 3px solid @blue;
+}
+
+#workspaces button {
+    padding-right: 6px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: transparent;
+    color: @subtext0;
+}
+
+#workspaces button:hover {
+    color: @subtext1;
+}
+
+#workspaces button.empty {
+    color: @overlay1;
+}
+
+#workspaces button.active {
+    color: @text;
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#window,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-media,
+#custom-distro,
+#tray,
+#workspaces {
+    padding: 0 10px;
+    background-color: @base;
+    color: @text;
+    opacity: 1;
+}
+
+#clock {
+    border: 3px solid @yellow;
+}
+
+#custom-distro {
+    border: 3px solid @green;
+    padding-right: 13px;
+}
+
+#window {
+    border: 3px solid @sapphire;
+}
+
+#battery {
+    border: 3px solid @rosewater;
+}
+
+#cpu {
+    border: 3px solid @peach;
+    padding-right: 15px
+}
+
+#memory {
+    border: 3px solid @maroon;
+}
+
+#backlight {
+    border: 3px solid @flamingo;
+}
+
+#pulseaudio {
+    border: 3px solid @pink;
+}
+
+#custom-media {
+    border: 3px solid @sky;
+    min-width: 100px;
+}
+
+#custom-media.custom-mpv {
+    border: 3px solid @mauve;
+}
+
+#custom-media.custom-spotify {
+    border: 3px solid @green;
+}
+
+#custom-media.custom-vlc {
+    border: 3px solid @peach;
+}
+
+#custom-media.custom-firefox {
+    border: 3px solid @red;
+}
+
+#temperature {
+    border: 3px solid @red;
+}
+
+#tray {
+    border: 3px solid @maroon;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    border: 3px solid @red;
+}
+
+#GtkSeparatorMenuItem {
+    border-radius: 0px;
+    padding: 0px;
+}
